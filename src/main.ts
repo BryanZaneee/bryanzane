@@ -72,15 +72,15 @@ if (yearEl) yearEl.textContent = String(new Date().getFullYear());
     const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
 
     const text =
-      luminance > 0.6
+      luminance > 0.7
         ? "#111319"
-        : luminance > 0.4
+        : luminance > 0.5
         ? "#1b1f27"
         : "rgba(242,245,248,0.96)";
     const muted =
-      luminance > 0.6
+      luminance > 0.7
         ? "#4c5665"
-        : luminance > 0.4
+        : luminance > 0.5
         ? "#707b8c"
         : "rgba(203,210,220,0.8)";
 
