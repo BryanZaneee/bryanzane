@@ -3,12 +3,13 @@
       "target": "ES2019",
       "module": "ES2020",
       "moduleResolution": "Bundler",
-      "outDir": "./",
-      "rootDir": "./",
+      "outDir": "./dist",
+      "rootDir": "./src",
       "strict": true,
       "noEmitOnError": false,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true
     },
-    "include": ["main.ts"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
   }

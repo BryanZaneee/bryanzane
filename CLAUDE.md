@@ -4,10 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- `npm install` - Install dependencies
-- `npm run build` - Compile TypeScript to JavaScript (main.ts → main.js)
-- `npm run watch` - Watch mode for TypeScript compilation
-- `npm run serve` - Start local HTTP server for development
+- `pnpm install` - Install dependencies
+- `pnpm dev` - Start Vite development server with hot reloading (port 3000)
+- `pnpm build` - Build for production using Vite
+- `pnpm preview` - Preview production build locally
+- `pnpm build:ts` - Compile TypeScript standalone (optional)
+- `pnpm watch` - Watch mode for TypeScript compilation
 
 ## Project Architecture
 
@@ -17,6 +19,8 @@ This is a single-page portfolio website built with vanilla HTML, CSS, and TypeSc
 - `src/index.html` - Main HTML structure with hero, about, skills, and projects sections
 - `src/styles.css` - Complete CSS styling with glassmorphism effects and responsive design
 - `src/main.ts` - TypeScript for scroll effects, color interpolation, and reveal animations
+- `vite.config.ts` - Vite configuration for development and build
+- `tsconfig.json` - TypeScript configuration
 
 ### Key Features
 - **Scroll-reactive gradient background** - Interpolates between light (#F3E9DC) and dark (#323B45) colors based on scroll position
@@ -40,7 +44,15 @@ The main.ts file is organized into functional modules:
 
 ## Development Notes
 
-- TypeScript compiles to ES2020 modules
-- No build tools or bundlers required - just TypeScript compilation
-- Static hosting compatible (GitHub Pages, Netlify, Vercel)
-- The compiled main.js is loaded as a module in index.html
+- **Modern tooling**: Uses Vite for fast development and optimized builds
+- **TypeScript**: Compiles to ES2020 modules with strict type checking
+- **Hot reloading**: Vite provides instant updates during development
+- **Production builds**: Optimized bundles with asset hashing and minification
+- **Static hosting**: Compatible with GitHub Pages, Netlify, Vercel, etc.
+- **Source structure**: All source files in `src/`, builds output to `dist/`
+
+## Git Workflow
+
+- Repository: https://github.com/BryanZaneee/bryanzane
+- Main branch: `main`
+- Standard git workflow with conventional commits

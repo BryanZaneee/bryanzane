@@ -73,7 +73,7 @@ a {
   z-index: 50;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: var(--gap);
   padding: 14px var(--inset);
   backdrop-filter: blur(10px);
@@ -177,6 +177,7 @@ a {
   letter-spacing: -0.02em;
   font-size: clamp(28px, 5vw, 56px);
   margin: 0 0 16px 0;
+  text-align: center;
 }
 
 .subtitle {
@@ -202,6 +203,12 @@ a {
   display: grid;
   gap: 6px;
   text-align: center;
+}
+
+.stat-icon {
+  justify-self: center;
+  opacity: 0.7;
+  margin-top: 4px;
 }
 
 .stat .num {
@@ -459,6 +466,72 @@ a {
     rgba(255, 255, 255, 0.25),
     transparent 60%
   );
+}
+
+/* Contact Section */
+.contact {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.02));
+}
+
+.contact-card {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 48px);
+  text-align: center;
+}
+
+.contact-title {
+  font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 36px);
+  margin: 0 0 16px 0;
+  letter-spacing: -0.01em;
+}
+
+.contact-description {
+  font-size: clamp(16px, 2.5vw, 18px);
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 32px 0;
+}
+
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.contact-btn {
+  font-size: 16px;
+  padding: 16px 28px;
+  border-radius: 14px;
+  font-weight: 600;
+  min-width: 200px;
+}
+
+.contact-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-link {
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .contact-link {
+    min-width: 140px;
+  }
 }
 
 /* Focus outlines */
