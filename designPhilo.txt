@@ -1,0 +1,228 @@
+BZS SOFTWARE DESIGN SYSTEM
+============================
+
+DESIGN PHILOSOPHY
+-----------------
+Bold minimalist modernism with a sophisticated tech aesthetic. The design language centers on extreme typography—oversized, ultra-black headlines in all caps that command attention while maintaining effortless readability. The layout is intentionally spacious and breathable, using generous whitespace to create a premium, uncluttered experience. Smooth, choreographed animations add cinematic polish without overwhelming. The design balances powerful statement-making with subtle sophistication—large scale contrasted with delicate details.
+
+Typography is paramount. The style feels startup-forward yet enterprise-credible: confident, direct, and refreshingly honest. It's design that gets out of the way—powerful tools presented with zero friction, embodying the "zero-hassle solutions" ethos. The aesthetic is simultaneously approachable and authoritative, modern without being trendy.
+
+
+COLOR PALETTE
+-------------
+
+Primary Colors:
+  --color-bg-light: #f5f5f0 (warm beige background)
+  --color-bg-dark: #2d4a4a (deep teal/dark cyan)
+  --color-text-dark: #1a1a1a (near black)
+  --color-text-light: #ffffff (white)
+  --color-accent: #8bc34a (vibrant lime green)
+
+Additional Backgrounds:
+  - Contact Section: #0a0e27 (deep navy blue)
+  - Accent Section: #1a1a1a (pure black)
+
+
+TYPOGRAPHY
+----------
+
+Font Family:
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
+
+Font Weights Used:
+  - 300 (Light)
+  - 400 (Regular/Normal)
+  - 500 (Medium)
+  - 600 (Semi-Bold)
+  - 700 (Bold)
+  - 800 (Extra-Bold)
+  - 900 (Black/Heavy)
+
+Font Sizes & Usage:
+
+Hero Titles:
+  - Desktop: clamp(60px, 8vw, 110px) - font-weight: 900, line-height: 0.95, letter-spacing: -0.03em, text-transform: uppercase
+
+App Titles:
+  - Desktop: clamp(50px, 8vw, 90px) - font-weight: 900, line-height: 0.95, letter-spacing: -0.03em, text-transform: uppercase
+  - Tablet: 40px
+  - Mobile: 36px
+
+App Numbers:
+  - Desktop: clamp(80px, 12vw, 140px) - font-weight: 900, opacity: 0.15 (light bg) / 0.2 (dark bg)
+  - Tablet: 80px
+  - Mobile: 60px
+  - Small Mobile: 50px
+
+Marquee Text:
+  - Desktop: clamp(80px, 12vw, 160px) - font-weight: 900, letter-spacing: -0.02em
+  - Tablet: 60px
+
+CTA Text:
+  - Desktop: clamp(32px, 4vw, 48px) - font-weight: 400, line-height: 1.3, letter-spacing: -0.02em
+  - Tablet: 28px
+  - Mobile: 24px
+
+Section Titles:
+  - 20px - font-weight: 600, letter-spacing: 0.05em
+
+Subsection Titles:
+  - 18px - font-weight: 600
+
+Body Text (About):
+  - Intro: 18px - line-height: 1.8, opacity: 0.95
+  - Regular: 17px - line-height: 1.8, opacity: 0.95
+
+App Descriptions:
+  - Desktop: clamp(18px, 2vw, 22px) - line-height: 1.6, opacity: 0.9
+  - Tablet: 16px
+  - Mobile: 15px
+
+Navigation:
+  - Desktop: 16px - font-weight: 400
+  - Tablet: 14px
+
+CTA Links:
+  - 18px - font-weight: 500
+
+Tags:
+  - Desktop: 14px - font-weight: 500
+  - Mobile: 13px
+
+Buttons:
+  - Desktop: 16px - font-weight: 700, letter-spacing: 0.05em, text-transform: uppercase
+  - Tablet/Mobile: 15px
+
+Coming Soon Badge:
+  - Desktop: clamp(14px, 2vw, 18px) - font-weight: 700, text-transform: uppercase, letter-spacing: 0.05em
+  - Tablet: 12px
+  - Mobile: 11px
+
+Chat Messages:
+  - Desktop: 16px - line-height: 1.6
+  - Tablet: 15px
+  - Mobile: 14px
+
+Footer:
+  - 14px - opacity: 0.7
+
+
+SPACING & LAYOUT
+----------------
+
+Container:
+  - max-width: 1400px
+  - padding: 0 60px (desktop), 0 40px (tablet), 0 30px (mobile), 0 20px (small mobile)
+
+Section Padding:
+  - Hero: 180px 0 100px (desktop), 140px 0 80px (mobile)
+  - CTA: 120px 0 (desktop), 80px 0 (tablet)
+  - Brand/Marquee: 80px 0 (desktop), 60px 0 (tablet)
+  - About: 120px 0 180px (desktop), 80px 0 120px (tablet)
+  - App Sections: 140px 0 (desktop), 100px 0 (tablet), 80px 0 (mobile)
+  - Contact: 120px 0 (desktop), 80px 0 (tablet), 60px 0 (mobile)
+  - Footer: 60px 0
+
+Grid Systems:
+  - Hero Content: grid-template-columns: 400px 1fr, gap: 100px
+  - App Content: grid-template-columns: 200px 1fr, gap: 80px
+  - CTA Content: flex with gap: 80px
+
+Component Spacing:
+  - Navigation links: gap: 50px (desktop), 30px (tablet)
+  - CTA links: gap: 30px
+  - App tags: gap: 15px
+  - Message bubbles: margin-bottom: 20px
+
+
+COMPONENTS
+----------
+
+Buttons:
+  - Border-radius: 50px (pill shape)
+  - Padding: 14px 32px (desktop), 12px 28px (tablet), 14px 30px (mobile)
+  - Border: 2px solid var(--color-accent)
+  - Transition: all 0.3s ease
+  - Hover: background-color: transparent, color change, translateY(-2px)
+
+Tags:
+  - Border-radius: 50px
+  - Padding: 12px 24px (desktop), 10px 18px (mobile)
+  - Background: rgba(255, 255, 255, 0.1) on dark / rgba(0, 0, 0, 0.05) on light
+  - Border: 1px solid rgba(255, 255, 255, 0.2) on dark / rgba(0, 0, 0, 0.1) on light
+  - Hover: background-color: var(--color-accent), translateY(-2px)
+
+Links:
+  - Text decoration: none (nav) / underline (body)
+  - Border-bottom: 2px solid (CTA links), 1px solid (footer links)
+  - Transition: opacity 0.3s ease / transform 0.3s ease
+  - Hover: opacity: 0.6 (nav) / 0.8 (others), transform: translateX(5px) (CTA)
+
+Cards (Showreel):
+  - Background: white
+  - Border-radius: 8px
+  - Box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1)
+
+Chat Bubbles:
+  - Border-radius: 20px
+  - Padding: 16px 20px (desktop), 14px 18px (tablet), 12px 16px (mobile)
+  - Background: rgba(255, 255, 255, 0.08) (bot) / rgba(255, 255, 255, 0.95) (user)
+  - Border: 1px solid rgba(255, 255, 255, 0.1) (bot only)
+  - max-width: 600px (desktop), 90% (mobile)
+
+Avatar:
+  - Size: 40px × 40px (desktop), 35px × 35px (mobile)
+  - Border-radius: 50%
+  - Background: rgba(139, 195, 74, 0.2)
+  - Indicator dot: 12px × 12px (desktop), 10px × 10px (mobile)
+
+
+ANIMATIONS
+----------
+
+Stream In (Hero):
+  - Duration: 0.8s
+  - Easing: cubic-bezier(0.16, 1, 0.3, 1)
+  - Delay: Staggered (0.3s, 0.6s, 0.9s for title lines; 1.2s for card)
+  - Effect: opacity 0→1, translateY(30px)→0
+
+Marquee:
+  - Duration: 30s linear infinite
+  - Effect: translateX(0)→translateX(-50%)
+
+Fade In Up (Chat):
+  - Duration: 0.4s ease
+  - Effect: opacity 0→1, translateY(10px)→0
+
+Pulse (Avatar indicator):
+  - Duration: 2s infinite
+  - Effect: opacity 1→0.7→1, scale 1→1.1→1
+
+Hover Transitions:
+  - Standard: all 0.3s ease
+  - App icons: transform scale(1.1)
+  - Tags: translateY(-2px)
+  - Buttons: translateY(-2px), scale(1.1) for send button
+
+
+BREAKPOINTS
+-----------
+  - Desktop: Default (> 1024px)
+  - Tablet: max-width: 1024px
+  - Mobile: max-width: 768px
+  - Small Mobile: max-width: 480px
+
+
+UI PATTERNS
+-----------
+
+1. Extreme Typography Hierarchy: Ultra-large headings (90-110px) contrast with modest body text (16-18px)
+2. Pill-Shaped Elements: All interactive elements use 50px border-radius
+3. Subtle Overlays: Text/elements use low opacity (0.7-0.95) for depth
+4. Minimalist Icons: Simple line icons with 2px stroke-width
+5. Staggered Animations: Sequential reveals create cinematic flow
+6. Generous Whitespace: Large padding/gaps create breathing room
+7. Accent Pops: Lime green (#8bc34a) used sparingly for calls-to-action
+8. Dark-on-Light / Light-on-Dark: Alternating section backgrounds
+9. Underline Details: Subtle 1-2px borders under links
+10. Opacity Layering: Background overlays use rgba for transparency
