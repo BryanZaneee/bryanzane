@@ -95,7 +95,7 @@ a {
   background: var(--color-bg-dark);
   color: var(--color-text-light);
   padding: 100px 0;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
@@ -150,6 +150,11 @@ a {
 .hero-bzs-pattern .bzs-row-6 {
   animation: slideRight 29s linear infinite;
   transform: translateX(-300px);
+}
+
+.hero-bzs-pattern .bzs-row-7 {
+  animation: slideLeft 31s linear infinite;
+  transform: translateX(-350px);
 }
 
 .hero-bzs-pattern .bzs-text {
