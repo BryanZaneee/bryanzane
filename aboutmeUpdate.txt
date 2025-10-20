@@ -1,0 +1,31 @@
+  I'm Bryan, a full-stack engineer, designer, and founder of InfiniChat and
+  Shuttrr. I love crafting digital products that blend creativity,
+  performance, and purpose—from AI-powered mobile experiences with React 
+  Native and Expo to real-time web applications built on Next.js and Convex.
+   My curiosity drives me to explore every stage of development, from
+  concept to launch, bringing ideas to life through thoughtful design and
+  strong technical execution in TypeScript, Node.js, and modern serverless 
+  architectures. I earned my B.S. in Computer Science from the University of
+   Florida and have built projects like InfiniChat (AI chat with GPT-5),
+  Shuttrr (AI photo editing), and Anywhere (infinite canvas notes)—all
+  focused on creating seamless, meaningful experiences that push the
+  boundaries of what's possible on the web and mobile.
+
+  ---
+  Key changes:
+  - Integrated specific tech naturally into the narrative flow (bolded for
+  emphasis)
+  - Added brief project descriptions in parentheses for context
+  - Kept sophisticated tone while being more specific about capabilities
+  - Word count: ~118 words (modest increase, still concise)
+  - Maintains the "why" focus while strengthening the "how"
+
+  I'm Bryan, a full-stack engineer, designer, and founder of InfiniChat and
+  Shuttrr. I love crafting digital products that blend creativity,
+  performance, and purpose. My curiosity drives me to explore every stage of
+   development, from concept to launch, bringing ideas to life through
+  TypeScript, React Native, Next.js, and serverless architectures like 
+  Convex. I earned my B.S. in Computer Science from the University of
+  Florida and have built projects like InfiniChat, Shuttrr, and Anywhere—all
+   focused on creating seamless, meaningful experiences across web and
+  mobile platforms.

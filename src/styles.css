@@ -105,14 +105,14 @@ a {
 /* BZS Pattern Background for Hero */
 .hero-bzs-pattern {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -5%;
+  left: -25%;
+  width: 150%;
+  height: 180%;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  transform: rotate(-15deg) translateX(-10%);
+  transform: rotate(-15deg);
   pointer-events: none;
   z-index: 0;
 }
@@ -124,36 +124,36 @@ a {
 }
 
 .hero-bzs-pattern .bzs-row-1 {
-  animation: slideLeft 25s linear infinite;
+  animation: slideLeft 18s linear infinite;
 }
 
 .hero-bzs-pattern .bzs-row-2 {
-  animation: slideRight 30s linear infinite;
+  animation: slideRight 22s linear infinite;
   transform: translateX(-100px);
 }
 
 .hero-bzs-pattern .bzs-row-3 {
-  animation: slideLeft 28s linear infinite;
+  animation: slideLeft 20s linear infinite;
   transform: translateX(-200px);
 }
 
 .hero-bzs-pattern .bzs-row-4 {
-  animation: slideRight 32s linear infinite;
+  animation: slideRight 24s linear infinite;
   transform: translateX(-150px);
 }
 
 .hero-bzs-pattern .bzs-row-5 {
-  animation: slideLeft 27s linear infinite;
+  animation: slideLeft 19s linear infinite;
   transform: translateX(-250px);
 }
 
 .hero-bzs-pattern .bzs-row-6 {
-  animation: slideRight 29s linear infinite;
+  animation: slideRight 21s linear infinite;
   transform: translateX(-300px);
 }
 
 .hero-bzs-pattern .bzs-row-7 {
-  animation: slideLeft 31s linear infinite;
+  animation: slideLeft 23s linear infinite;
   transform: translateX(-350px);
 }
 
@@ -591,8 +591,17 @@ a {
   font-size: 15px;
   line-height: 1.7;
   opacity: 0.85;
-  margin: 0 0 24px 0;
+  margin: 0 0 12px 0;
   flex-grow: 1;
+}
+
+.project-flavor {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.7;
+  margin: 0 0 24px 0;
+  font-style: italic;
+  color: var(--color-text-dark);
 }
 
 .project-tags {
@@ -1042,6 +1051,11 @@ a {
     padding: 80px 0;
   }
 
+  .hero {
+    min-height: 100vh;
+    padding: 60px 0 40px;
+  }
+
   .nav {
     gap: 30px;
   }
@@ -1062,12 +1076,18 @@ a {
     font-size: 15px;
   }
 
+  .hero-text {
+    margin-bottom: 40px;
+  }
+
   .hero-bzs-pattern {
-    gap: 20px;
+    gap: 15px;
+    height: 180%;
+    top: -5%;
   }
 
   .hero-bzs-pattern .bzs-text {
-    font-size: 50px;
+    font-size: 70px;
   }
 
   .static-tagline {
@@ -1150,6 +1170,10 @@ a {
     width: 45px;
     height: 45px;
   }
+
+  .site-footer {
+    padding: 60px 0 100px;
+  }
 }
 
 /* ================================
@@ -1165,6 +1189,11 @@ a {
     font-size: 16px;
   }
 
+  .hero {
+    min-height: 100vh;
+    padding: 50px 0 30px;
+  }
+
   .hero-title {
     font-size: 48px;
   }
@@ -1173,12 +1202,18 @@ a {
     font-size: 14px;
   }
 
+  .hero-text {
+    margin-bottom: 30px;
+  }
+
   .hero-bzs-pattern {
-    gap: 15px;
+    gap: 12px;
+    height: 180%;
+    top: -5%;
   }
 
   .hero-bzs-pattern .bzs-text {
-    font-size: 40px;
+    font-size: 60px;
   }
 
   .static-tagline {
