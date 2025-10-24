@@ -309,6 +309,142 @@ a {
 }
 
 /* ================================
+   ABOUT SECTION - Glassmorphism Cards
+   ================================ */
+
+.about-option-3 {
+  background: var(--color-bg-dark);
+  padding: 60px 0;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.hover-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  transition: all 0.3s ease;
+  min-height: 400px;
+}
+
+.card-purple {
+  border-left: 4px solid #7C3AED;
+}
+
+.card-green {
+  border-left: 4px solid #059669;
+}
+
+.card-orange {
+  border-left: 4px solid #F97316;
+}
+
+.hover-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.card-purple:hover {
+  border-color: #7C3AED;
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+}
+
+.card-green:hover {
+  border-color: #059669;
+  box-shadow: 0 10px 30px rgba(5, 150, 105, 0.2);
+}
+
+.card-orange:hover {
+  border-color: #F97316;
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.2);
+}
+
+.card-title-opt3 {
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px 0;
+  color: var(--color-text-light);
+}
+
+.card-subtitle {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.85;
+  margin: 0 0 16px 0;
+  color: var(--color-text-light);
+}
+
+.card-text-opt3 {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin: 0;
+  color: var(--color-text-light);
+}
+
+.card-text-opt3 b {
+  font-weight: 700;
+}
+
+/* ================================
+   MARQUEE SECTIONS
+   ================================ */
+
+.marquee-section {
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.marquee-about {
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
+}
+
+.marquee-projects {
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
+}
+
+.marquee-wrapper {
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+  font-size: clamp(50px, 8vw, 100px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.marquee-text {
+  padding: 0 40px;
+}
+
+.marquee-symbol {
+  color: var(--color-accent);
+  padding: 0 40px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ================================
    ANIMATIONS
    ================================ */
 
@@ -338,6 +474,53 @@ a {
   background: #ffffff;
   color: var(--color-text-dark);
   padding: 120px 0 180px;
+}
+
+/* ================================
+   NEW ABOUT SECTIONS - Colored
+   ================================ */
+
+.about-section-purple {
+  background: #7C3AED;
+  color: var(--color-text-light);
+  padding: 140px 0;
+}
+
+.about-section-green {
+  background: #059669;
+  color: var(--color-text-light);
+  padding: 140px 0;
+}
+
+.about-section-orange {
+  background: #F97316;
+  color: var(--color-text-light);
+  padding: 140px 0;
+}
+
+.about-content-simple {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-section-title {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  line-height: 1.1;
+}
+
+.about-section-text {
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.8;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.about-section-text b {
+  font-weight: 700;
 }
 
 .section-label {
@@ -392,6 +575,9 @@ a {
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   margin-top: 60px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-card {
@@ -461,8 +647,11 @@ a {
 /* Tools Grid */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 20px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tool-item {
@@ -508,6 +697,135 @@ a {
 .projects-section {
   background: var(--color-bg-light);
   padding: 120px 0;
+}
+
+/* ================================
+   NEW PROJECT SECTIONS - Full Width Numbered
+   ================================ */
+
+.project-section {
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-section-light {
+  background: var(--color-bg-light);
+  color: var(--color-text-dark);
+}
+
+.project-section-dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-light);
+}
+
+.project-section-accent {
+  background: #1a1a1a;
+  color: var(--color-text-light);
+}
+
+.project-content {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+}
+
+.project-number {
+  font-size: clamp(80px, 12vw, 140px);
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.15;
+  letter-spacing: -0.03em;
+}
+
+.project-section-dark .project-number,
+.project-section-accent .project-number {
+  opacity: 0.2;
+}
+
+.project-details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.project-title-large {
+  font-size: clamp(50px, 8vw, 90px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project-icon-inline {
+  width: clamp(40px, 6vw, 70px);
+  height: clamp(40px, 6vw, 70px);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.project-section-dark .project-icon-inline,
+.project-section-accent .project-icon-inline {
+  filter: brightness(0) invert(1);
+}
+
+.project-title-large:hover .project-icon-inline {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.infinichat-logo {
+  height: clamp(70px, 10.5vw, 123px);
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.project-description-large {
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+  max-width: 700px;
+}
+
+.live-app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  background: var(--color-accent);
+  color: var(--color-text-dark);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  border: 2px solid var(--color-accent);
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.live-app-button:hover {
+  background: transparent;
+  color: var(--color-text-light);
+  transform: translateY(-2px);
+}
+
+.project-section-light .live-app-button:hover {
+  color: var(--color-text-dark);
+}
+
+.button-text {
+  position: relative;
+  z-index: 1;
 }
 
 .section-header {
@@ -581,10 +899,21 @@ a {
 }
 
 .project-title {
+  font-family: var(--font-primary);
   font-size: 28px;
-  font-weight: 700;
-  margin: 0 0 16px 0;
+  font-weight: 900;
+  line-height: 1.1;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 16px 0;
+}
+
+.project-title img {
+  height: 42px;
+  width: auto;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-bottom: -6px;
 }
 
 .project-description {
@@ -982,6 +1311,30 @@ a {
 }
 
 /* ================================
+   RESPONSIVE - Large Desktop
+   ================================ */
+
+@media (min-width: 1440px) {
+  .about-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tools-grid {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .projects-grid {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ================================
    RESPONSIVE - Tablet
    ================================ */
 
@@ -1018,6 +1371,28 @@ a {
     padding: 60px 0;
   }
 
+  .marquee-section {
+    padding: 60px 0;
+  }
+
+  .marquee-content {
+    font-size: 70px;
+  }
+
+  .about-section-purple,
+  .about-section-green,
+  .about-section-orange {
+    padding: 100px 0;
+  }
+
+  .about-section-title {
+    font-size: clamp(32px, 5vw, 42px);
+  }
+
+  .about-section-text {
+    font-size: clamp(16px, 2vw, 20px);
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -1028,13 +1403,48 @@ a {
     gap: 16px;
   }
 
+  .project-section {
+    padding: 100px 0;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .project-number {
+    font-size: 80px;
+  }
+
+  .project-title-large {
+    font-size: clamp(40px, 7vw, 70px);
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
+  .project-title {
+    font-size: 24px;
+  }
+
+  .project-title img {
+    height: 36px;
+  }
+
   .footer-content {
     flex-direction: column;
+  }
+
+  /* About cards responsive */
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hover-card {
+    min-height: auto;
   }
 }
 
@@ -1098,6 +1508,29 @@ a {
     padding: 50px 0;
   }
 
+  .marquee-section {
+    padding: 50px 0;
+  }
+
+  .marquee-content {
+    font-size: 50px;
+  }
+
+  .about-section-purple,
+  .about-section-green,
+  .about-section-orange {
+    padding: 80px 0;
+  }
+
+  .about-section-title {
+    font-size: clamp(28px, 5vw, 36px);
+    margin-bottom: 30px;
+  }
+
+  .about-section-text {
+    font-size: 16px;
+  }
+
   .about-text {
     font-size: 16px;
   }
@@ -1129,8 +1562,46 @@ a {
     font-size: 12px;
   }
 
+  .project-section {
+    padding: 80px 0;
+  }
+
+  .project-number {
+    font-size: 60px;
+  }
+
+  .project-title-large {
+    font-size: clamp(36px, 7vw, 50px);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .project-icon-inline {
+    width: 35px;
+    height: 35px;
+  }
+
+  .infinichat-logo {
+    height: 61px;
+  }
+
+  .project-description-large {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .live-app-button {
+    font-size: 15px;
+    padding: 12px 28px;
+  }
+
   .project-title {
-    font-size: 24px;
+    font-size: 20px;
+  }
+
+  .project-title img {
+    height: 30px;
+    margin-bottom: -4px;
   }
 
   .project-description {
@@ -1222,6 +1693,66 @@ a {
 
   .static-text-section {
     padding: 40px 0;
+  }
+
+  .marquee-section {
+    padding: 40px 0;
+  }
+
+  .marquee-content {
+    font-size: 40px;
+  }
+
+  .about-section-purple,
+  .about-section-green,
+  .about-section-orange {
+    padding: 60px 0;
+  }
+
+  .about-section-title {
+    font-size: clamp(24px, 5vw, 32px);
+    margin-bottom: 24px;
+  }
+
+  .about-section-text {
+    font-size: 15px;
+  }
+
+  .project-section {
+    padding: 60px 0;
+  }
+
+  .project-number {
+    font-size: 50px;
+  }
+
+  .project-title-large {
+    font-size: clamp(32px, 7vw, 40px);
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .project-icon-inline {
+    width: 30px;
+    height: 30px;
+  }
+
+  .infinichat-logo {
+    height: 53px;
+  }
+
+  .project-description-large {
+    font-size: 15px;
+  }
+
+  .live-app-button {
+    font-size: 15px;
+    padding: 14px 30px;
+  }
+
+  .project-tags .project-tag {
+    padding: 10px 18px;
+    font-size: 13px;
   }
 
   .footer-contact {

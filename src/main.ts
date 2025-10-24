@@ -1,3 +1,6 @@
+// Motion One imports
+import { animate, stagger } from "motion";
+
 // DOM helpers
 const $ = <T extends Element = Element>(sel: string, root = document) =>
   root.querySelector<T>(sel);
@@ -24,6 +27,50 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
   );
 
   els.forEach(el => io.observe(el));
+})();
+
+// Motion One animations for about cards
+(function setupCardAnimations() {
+  const cardsContainer = $(".cards-grid");
+
+  if (!cardsContainer) return;
+
+  const cards = $$(".hover-card", cardsContainer);
+
+  // Set initial state
+  cards.forEach(card => {
+    (card as HTMLElement).style.opacity = "0";
+    (card as HTMLElement).style.transform = "translateY(40px)";
+  });
+
+  const io = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate cards with Motion One
+          animate(
+            cards,
+            {
+              opacity: [0, 1],
+              transform: ["translateY(40px)", "translateY(0px)"]
+            },
+            {
+              delay: stagger(0.15),
+              duration: 0.8,
+              easing: "ease-out"
+            }
+          );
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -10% 0px",
+    }
+  );
+
+  io.observe(cardsContainer);
 })();
 
 // Intersection Observer for animated text highlights
