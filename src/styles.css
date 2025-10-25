@@ -784,7 +784,7 @@ a {
 .infinichat-logo {
   height: clamp(70px, 10.5vw, 123px);
   width: auto;
-  filter: brightness(0) invert(1);
+  filter: brightness(0);
 }
 
 .project-description-large {
