@@ -291,39 +291,6 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
   );
 })();
 
-// Interactive marquee effects
-(function setupMarqueeInteractions() {
-  const marqueeWrappers = $$(".marquee-wrapper");
-
-  marqueeWrappers.forEach(wrapper => {
-    const wrapperEl = wrapper as HTMLElement;
-    const content = $(".marquee-content", wrapperEl) as HTMLElement;
-
-    if (!content) return;
-
-    // Pause/slow on hover
-    wrapperEl.addEventListener('mouseenter', () => {
-      animate(
-        content,
-        {
-          animationPlayState: 'paused'
-        },
-        {
-          duration: 0.3,
-          easing: 'ease-out'
-        }
-      );
-      // Slow down animation
-      content.style.animationDuration = '80s';
-    });
-
-    wrapperEl.addEventListener('mouseleave', () => {
-      // Resume normal speed
-      content.style.animationDuration = '40s';
-    });
-  });
-})();
-
 // Reduce motion respects user preference
 (function respectReducedMotion() {
   const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -351,10 +318,6 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
       const bzsPattern = $(".hero-bzs-pattern") as HTMLElement;
       if (heroContent) heroContent.style.transform = "none";
       if (bzsPattern) bzsPattern.style.transform = "none";
-      // Disable marquee interactions
-      $$(".marquee-content").forEach(el => {
-        (el as HTMLElement).style.animationDuration = "40s";
-      });
     }
   };
   if ("addEventListener" in mq) {
