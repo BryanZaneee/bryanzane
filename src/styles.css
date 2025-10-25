@@ -809,14 +809,15 @@ a {
   text-transform: uppercase;
   border-radius: 50px;
   border: 2px solid var(--color-accent);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
   width: fit-content;
+  will-change: transform, box-shadow;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .live-app-button:hover {
   background: transparent;
   color: var(--color-text-light);
-  transform: translateY(-2px);
 }
 
 .project-section-light .live-app-button:hover {
@@ -1218,6 +1219,32 @@ a {
 
 .chat-send-button:disabled:hover {
   transform: none;
+}
+
+/* Service Selection Buttons */
+.service-option-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-text-light);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.service-option-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text-dark);
+  transform: translateX(4px);
+}
+
+.service-option-btn:active {
+  transform: translateX(4px) scale(0.98);
 }
 
 /* ================================

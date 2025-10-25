@@ -347,6 +347,40 @@
                 <div class="message-bubble"></div>
               </div>
 
+              <!-- Service Selection Messages -->
+              <div class="chat-message bot-message" id="service-question" style="display: none;">
+                <div class="message-avatar">
+                  <span class="avatar-indicator"></span>
+                </div>
+                <div class="message-bubble">What brings you here today?</div>
+              </div>
+
+              <div class="chat-message bot-message" id="service-options" style="display: none;">
+                <div class="message-avatar">
+                  <span class="avatar-indicator"></span>
+                </div>
+                <div class="message-bubble">
+                  <div style="margin-bottom: 12px;">I offer:</div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <button class="service-option-btn" data-service="ai-consulting">🤖 AI Consulting & Integration</button>
+                    <button class="service-option-btn" data-service="full-stack">💻 Full-Stack Development</button>
+                    <button class="service-option-btn" data-service="maintenance">🔧 Website Maintenance</button>
+                    <button class="service-option-btn" data-service="general">💬 General Inquiry</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat-message user-message" id="user-service-message" style="display: none;">
+                <div class="message-bubble"></div>
+              </div>
+
+              <div class="chat-message bot-message" id="service-response" style="display: none;">
+                <div class="message-avatar">
+                  <span class="avatar-indicator"></span>
+                </div>
+                <div class="message-bubble"></div>
+              </div>
+
               <div class="chat-message bot-message" id="email-question" style="display: none;">
                 <div class="message-avatar">
                   <span class="avatar-indicator"></span>
@@ -427,6 +461,7 @@
 
             <form id="contact-form" class="chat-input-wrapper" action="https://formspree.io/f/xkgqkwbg" method="POST">
               <input type="hidden" name="name" id="form-name">
+              <input type="hidden" name="service" id="form-service">
               <input type="hidden" name="_replyto" id="form-email">
               <input type="hidden" name="email" id="form-email-copy">
               <input type="hidden" name="phone" id="form-phone">

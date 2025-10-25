@@ -1,5 +1,5 @@
 // Motion One imports
-import { animate, stagger } from "motion";
+import { animate, stagger, inView, scroll } from "motion";
 
 // DOM helpers
 const $ = <T extends Element = Element>(sel: string, root = document) =>
@@ -94,6 +94,236 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
   els.forEach(el => io.observe(el));
 })();
 
+// Scroll-linked project animations
+(function setupProjectAnimations() {
+  const projectSections = $$(".project-section");
+
+  projectSections.forEach((section, index) => {
+    const projectContent = $(".project-content", section) as HTMLElement;
+    const projectNumber = $(".project-number", section) as HTMLElement;
+    const projectTags = $$(".project-tag", section);
+    const projectIcon = $(".project-icon-inline", section) as HTMLElement;
+    const projectButton = $(".live-app-button", section) as HTMLElement;
+
+    if (!projectContent) return;
+
+    // Set initial states
+    if (projectNumber) projectNumber.style.opacity = "0";
+    if (projectIcon) {
+      projectIcon.style.opacity = "0";
+      projectIcon.style.transform = "scale(0.5) rotate(-180deg)";
+    }
+    projectTags.forEach((tag) => {
+      (tag as HTMLElement).style.opacity = "0";
+      (tag as HTMLElement).style.transform = "translateY(20px)";
+    });
+    if (projectButton) {
+      projectButton.style.opacity = "0";
+      projectButton.style.transform = "translateY(20px)";
+    }
+
+    // Animate on scroll into view
+    inView(projectContent, () => {
+      // Animate project number with counter effect
+      if (projectNumber) {
+        const targetNumber = parseInt(projectNumber.textContent || "0");
+        animate(
+          (progress) => {
+            const current = Math.floor(progress * targetNumber);
+            projectNumber.textContent = current.toString().padStart(2, "0");
+          },
+          {
+            duration: 0.8,
+            easing: [0.34, 1.56, 0.64, 1]
+          }
+        );
+        animate(
+          projectNumber,
+          { opacity: [0, 1] },
+          { duration: 0.5, easing: "ease-out" }
+        );
+      }
+
+      // Animate icon with rotation and scale
+      if (projectIcon) {
+        animate(
+          projectIcon,
+          {
+            opacity: [0, 1],
+            transform: ["scale(0.5) rotate(-180deg)", "scale(1) rotate(0deg)"]
+          },
+          {
+            duration: 0.8,
+            easing: [0.34, 1.56, 0.64, 1]
+          }
+        );
+      }
+
+      // Stagger project tags with spring physics
+      if (projectTags.length > 0) {
+        animate(
+          projectTags,
+          {
+            opacity: [0, 1],
+            transform: ["translateY(20px)", "translateY(0px)"]
+          },
+          {
+            delay: stagger(0.1, { start: 0.3 }),
+            duration: 0.6,
+            easing: [0.34, 1.56, 0.64, 1]
+          }
+        );
+      }
+
+      // Animate button
+      if (projectButton) {
+        animate(
+          projectButton,
+          {
+            opacity: [0, 1],
+            transform: ["translateY(20px)", "translateY(0px)"]
+          },
+          {
+            delay: 0.4,
+            duration: 0.6,
+            easing: [0.34, 1.56, 0.64, 1]
+          }
+        );
+      }
+
+      return () => {}; // Cleanup function
+    }, {
+      margin: "0px 0px -100px 0px"
+    });
+  });
+})();
+
+// Enhanced button micro-interactions
+(function setupButtonAnimations() {
+  const buttons = $$(".live-app-button");
+
+  buttons.forEach(button => {
+    const buttonEl = button as HTMLElement;
+
+    buttonEl.addEventListener('mouseenter', () => {
+      animate(
+        buttonEl,
+        {
+          transform: 'scale(1.05) translateY(-2px)',
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
+        },
+        {
+          duration: 0.4,
+          easing: [0.34, 1.56, 0.64, 1] // Spring easing
+        }
+      );
+    });
+
+    buttonEl.addEventListener('mouseleave', () => {
+      animate(
+        buttonEl,
+        {
+          transform: 'scale(1) translateY(0px)',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+        },
+        {
+          duration: 0.3,
+          easing: 'ease-out'
+        }
+      );
+    });
+
+    buttonEl.addEventListener('mousedown', () => {
+      animate(
+        buttonEl,
+        {
+          transform: 'scale(0.95) translateY(0px)'
+        },
+        {
+          duration: 0.1,
+          easing: 'ease-out'
+        }
+      );
+    });
+
+    buttonEl.addEventListener('mouseup', () => {
+      animate(
+        buttonEl,
+        {
+          transform: 'scale(1.05) translateY(-2px)'
+        },
+        {
+          duration: 0.2,
+          easing: [0.34, 1.56, 0.64, 1]
+        }
+      );
+    });
+  });
+})();
+
+// Parallax effect for hero section
+(function setupHeroParallax() {
+  const heroSection = $(".hero") as HTMLElement;
+  const heroContent = $(".hero-content") as HTMLElement;
+  const bzsPattern = $(".hero-bzs-pattern") as HTMLElement;
+
+  if (!heroSection || !heroContent || !bzsPattern) return;
+
+  scroll(
+    animate(heroContent, {
+      transform: ["translateY(0px)", "translateY(100px)"],
+      opacity: [1, 0.3]
+    }),
+    {
+      target: heroSection,
+      offset: ["start start", "end start"]
+    }
+  );
+
+  scroll(
+    animate(bzsPattern, {
+      transform: ["translateY(0px)", "translateY(-150px) rotate(-15deg)"]
+    }),
+    {
+      target: heroSection,
+      offset: ["start start", "end start"]
+    }
+  );
+})();
+
+// Interactive marquee effects
+(function setupMarqueeInteractions() {
+  const marqueeWrappers = $$(".marquee-wrapper");
+
+  marqueeWrappers.forEach(wrapper => {
+    const wrapperEl = wrapper as HTMLElement;
+    const content = $(".marquee-content", wrapperEl) as HTMLElement;
+
+    if (!content) return;
+
+    // Pause/slow on hover
+    wrapperEl.addEventListener('mouseenter', () => {
+      animate(
+        content,
+        {
+          animationPlayState: 'paused'
+        },
+        {
+          duration: 0.3,
+          easing: 'ease-out'
+        }
+      );
+      // Slow down animation
+      content.style.animationDuration = '80s';
+    });
+
+    wrapperEl.addEventListener('mouseleave', () => {
+      // Resume normal speed
+      content.style.animationDuration = '40s';
+    });
+  });
+})();
+
 // Reduce motion respects user preference
 (function respectReducedMotion() {
   const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -110,6 +340,20 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
       // Disable BZS pattern animation
       $$(".bzs-row").forEach(el => {
         (el as HTMLElement).style.animation = "none";
+      });
+      // Disable project animations
+      $$(".project-number, .project-tag, .project-icon-inline, .live-app-button").forEach(el => {
+        (el as HTMLElement).style.opacity = "1";
+        (el as HTMLElement).style.transform = "none";
+      });
+      // Disable parallax
+      const heroContent = $(".hero-content") as HTMLElement;
+      const bzsPattern = $(".hero-bzs-pattern") as HTMLElement;
+      if (heroContent) heroContent.style.transform = "none";
+      if (bzsPattern) bzsPattern.style.transform = "none";
+      // Disable marquee interactions
+      $$(".marquee-content").forEach(el => {
+        (el as HTMLElement).style.animationDuration = "40s";
       });
     }
   };
@@ -136,6 +380,7 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
   let chatStarted = false;
   const userData: {
     name?: string;
+    service?: string;
     email?: string;
     phone?: string;
     workplace?: string;
@@ -152,6 +397,21 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     const msg = $(`#${id}`) as HTMLElement;
     if (msg) {
       msg.style.display = "flex";
+      msg.style.opacity = "0";
+      msg.style.transform = "translateY(20px) scale(0.95)";
+
+      animate(
+        msg,
+        {
+          opacity: [0, 1],
+          transform: ["translateY(20px) scale(0.95)", "translateY(0px) scale(1)"]
+        },
+        {
+          duration: 0.5,
+          easing: [0.34, 1.56, 0.64, 1] // Spring easing
+        }
+      );
+
       scrollToBottom();
     }
   };
@@ -192,7 +452,28 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     return cleaned.length >= 10;
   };
 
+  const getServiceLabel = (service: string): string => {
+    const labels: Record<string, string> = {
+      'ai-consulting': 'AI Consulting & Integration',
+      'full-stack': 'Full-Stack Development',
+      'maintenance': 'Website Maintenance',
+      'general': 'General Inquiry'
+    };
+    return labels[service] || service;
+  };
+
+  const getServiceResponse = (service: string): string => {
+    const responses: Record<string, string> = {
+      'ai-consulting': "Perfect! I specialize in AI integration and can help you implement cutting-edge AI systems for your business. Let's get your contact info so we can discuss your AI needs.",
+      'full-stack': "Awesome! I build robust, scalable web and mobile applications. Let's connect so we can discuss your project.",
+      'maintenance': "Great! I offer comprehensive website maintenance packages to keep your site running smoothly. Let's get in touch to discuss your needs.",
+      'general': "Sure thing! Let's get your contact information and we can chat about how I can help."
+    };
+    return responses[service] || "Great! Let's get your contact info so we can discuss further.";
+  };
+
   const steps = [
+    // Step 0: Initial greeting and name
     {
       prompt: () => {
         showMessage("lets-do-it-message");
@@ -204,12 +485,29 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
         showMessage("user-name-message");
         updateMessageText("greeting-message", `Nice to meet you, ${input}! 👋`);
         showMessage("greeting-message");
-        setTimeout(() => showMessage("email-question"), 500);
+        setTimeout(() => {
+          showMessage("service-question");
+          setTimeout(() => showMessage("service-options"), 500);
+        }, 500);
       },
       skipMessageId: null,
       onSkip: null,
       canSkip: false,
+      requiresInput: true,
     },
+    // Step 1: Service selection (handled by button clicks, not text input)
+    {
+      prompt: () => {},
+      process: (input: string) => {
+        // This is handled by button clicks, not direct input
+        return false;
+      },
+      skipMessageId: null,
+      onSkip: null,
+      canSkip: false,
+      requiresInput: false,
+    },
+    // Step 2: Email
     {
       prompt: () => {},
       process: (input: string) => {
@@ -230,7 +528,9 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
       skipMessageId: null,
       onSkip: null,
       canSkip: false,
+      requiresInput: true,
     },
+    // Step 3: Phone
     {
       prompt: () => {},
       process: (input: string) => {
@@ -253,7 +553,9 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
         setTimeout(() => showMessage("work-question"), 500);
       },
       canSkip: true,
+      requiresInput: true,
     },
+    // Step 4: Workplace
     {
       prompt: () => {},
       process: (input: string) => {
@@ -266,18 +568,20 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
       },
       skipMessageId: "skip-work-message",
       onSkip: () => {
-        updateMessageText("final-message", `Awesome! Thanks for sharing, ${userData.name}. I'll be in touch soon! 🚀`);
+        updateMessageText("final-message", `Awesome! Thanks for sharing, ${userData.name}. I'll be in touch soon to discuss ${getServiceLabel(userData.service || 'your needs')}! 🚀`);
         setTimeout(() => showMessage("final-message"), 500);
       },
       canSkip: true,
+      requiresInput: true,
     },
+    // Step 5: Role
     {
       prompt: () => {},
       process: (input: string) => {
         userData.role = input;
         updateMessageText("user-role-message", input);
         showMessage("user-role-message");
-        updateMessageText("final-message", `Awesome! Thanks for sharing, ${userData.name}. I'll be in touch soon! 🚀`);
+        updateMessageText("final-message", `Awesome! Thanks for sharing, ${userData.name}. I'll be in touch soon to discuss ${getServiceLabel(userData.service || 'your needs')}! 🚀`);
         setTimeout(() => {
           showMessage("final-message");
           submitForm();
@@ -286,10 +590,11 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
       },
       skipMessageId: "skip-role-message",
       onSkip: () => {
-        updateMessageText("final-message", `Awesome! Thanks for sharing, ${userData.name}. I'll be in touch soon! 🚀`);
+        updateMessageText("final-message", `Awesome! Thanks for sharing, ${userData.name}. I'll be in touch soon to discuss ${getServiceLabel(userData.service || 'your needs')}! 🚀`);
         setTimeout(() => showMessage("final-message"), 500);
       },
       canSkip: true,
+      requiresInput: true,
     },
   ];
 
@@ -302,6 +607,7 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
 
     const formData = new FormData();
     formData.append("name", userData.name || "");
+    formData.append("service", userData.service || "");
     formData.append("_replyto", userData.email || "");
     formData.append("email", userData.email || "");
     formData.append("phone", userData.phone || "");
@@ -336,14 +642,42 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     }
   };
 
+  const handleServiceSelection = (service: string) => {
+    userData.service = service;
+    updateMessageText("user-service-message", getServiceLabel(service));
+    showMessage("user-service-message");
+
+    updateMessageText("service-response", getServiceResponse(service));
+    showMessage("service-response");
+
+    setTimeout(() => showMessage("email-question"), 500);
+
+    currentStep = 2; // Move to email step
+    skipButton.style.display = steps[currentStep].canSkip ? "block" : "none";
+
+    // Re-enable input for next step
+    if (steps[currentStep].requiresInput) {
+      chatInput.disabled = false;
+      chatInput.focus();
+    }
+  };
+
   const handleInput = () => {
     const input = chatInput.value.trim();
     if (!input) return;
+
+    // Skip step 1 (service selection) as it's handled by buttons
+    if (currentStep === 1) return;
 
     const result = steps[currentStep].process(input);
     if (result !== false) {
       chatInput.value = "";
       currentStep++;
+
+      // Skip service selection step when advancing
+      if (currentStep === 1) {
+        currentStep++;
+      }
 
       if (currentStep < steps.length) {
         setTimeout(() => steps[currentStep].prompt(), 800);
@@ -391,7 +725,22 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     skipButton.style.display = steps[0].canSkip ? "block" : "none";
   };
 
-  // Prevent default form submission
+  // Set up service option button listeners
+  const setupServiceButtons = () => {
+    const serviceButtons = $$(".service-option-btn");
+    serviceButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const service = btn.getAttribute("data-service");
+        if (service) {
+          handleServiceSelection(service);
+        }
+      });
+    });
+  };
+
+  // Call this after a short delay to ensure buttons are in DOM
+  setTimeout(setupServiceButtons, 100);
+
   form.addEventListener("submit", (e: Event) => {
     e.preventDefault();
     return false;
@@ -405,6 +754,13 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     if (e.key === "Enter") {
       e.preventDefault();
       handleInput();
+    }
+  });
+
+  // Disable input initially for service selection step
+  chatInput.addEventListener("focus", () => {
+    if (currentStep === 1) {
+      chatInput.blur();
     }
   });
 })();
