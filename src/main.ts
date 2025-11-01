@@ -329,6 +329,77 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
   apply();
 })();
 
+// Custom cursor with smart color detection
+(function setupCustomCursor() {
+  // Only run on desktop
+  if (window.innerWidth < 1024) return;
+
+  // Create cursor element
+  const cursor = document.createElement("div");
+  cursor.className = "custom-cursor";
+  document.body.appendChild(cursor);
+
+  // Function to determine if background is very dark (needs white cursor)
+  const isVeryDarkBackground = (element: Element | null): boolean => {
+    if (!element) return false;
+
+    const bgColor = window.getComputedStyle(element).backgroundColor;
+
+    // If background is transparent, check parent
+    if (bgColor === "rgba(0, 0, 0, 0)" || bgColor === "transparent") {
+      if (element.parentElement) {
+        return isVeryDarkBackground(element.parentElement);
+      }
+      return false;
+    }
+
+    // Extract RGB values
+    const rgb = bgColor.match(/\d+/g);
+    if (rgb && rgb.length >= 3) {
+      // Calculate brightness using luminance formula
+      const brightness =
+        0.299 * parseInt(rgb[0]) +
+        0.587 * parseInt(rgb[1]) +
+        0.114 * parseInt(rgb[2]);
+      // Only very dark backgrounds (brightness < 50) get white cursor
+      return brightness < 50;
+    }
+
+    return false;
+  };
+
+  // Update cursor position and color on mouse move
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX - 10 + "px";
+    cursor.style.top = e.clientY - 10 + "px";
+
+    // Get element under cursor
+    const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+
+    if (elementUnderCursor) {
+      // Check if hovering over very dark background
+      if (isVeryDarkBackground(elementUnderCursor)) {
+        cursor.style.borderColor = "#ffffff";
+      } else {
+        cursor.style.borderColor = "#1a1a1a";
+      }
+    }
+  });
+
+  // Handle hover effects for interactive elements
+  $$("a, button").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.style.transform = "scale(1.5)";
+      cursor.style.borderColor = "#8bc34a"; // accent color
+    });
+
+    el.addEventListener("mouseleave", () => {
+      cursor.style.transform = "scale(1)";
+      // Color will be updated by mousemove event
+    });
+  });
+})();
+
 // Interactive chat form
 (function setupChatForm() {
   const chatInput = $("#chat-input") as HTMLInputElement;
