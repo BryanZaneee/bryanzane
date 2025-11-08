@@ -329,15 +329,44 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
   apply();
 })();
 
-// Custom cursor with smart color detection
-(function setupCustomCursor() {
-  // Only run on desktop
-  if (window.innerWidth < 1024) return;
+// Dynamic cursor effect with color detection
+const createCursor = () => {
+  console.log("CURSOR: createCursor function called!");
+  console.log("CURSOR: Window width is", window.innerWidth);
 
-  // Create cursor element
-  const cursor = document.createElement("div");
-  cursor.className = "custom-cursor";
+  const cursor = document.createElement('div');
+  cursor.className = 'custom-cursor';
   document.body.appendChild(cursor);
+
+  const cursorStyle = document.createElement('style');
+  cursorStyle.textContent = `
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #1a1a1a;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.2s ease, border-color 0.3s ease;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .custom-cursor {
+        display: block;
+      }
+      body {
+        cursor: none;
+      }
+      a, button, input, textarea {
+        cursor: none;
+      }
+    }
+  `;
+  document.head.appendChild(cursorStyle);
+
+  console.log("CURSOR: Element created and styles injected");
 
   // Function to determine if background is very dark (needs white cursor)
   const isVeryDarkBackground = (element: Element | null): boolean => {
@@ -346,7 +375,7 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     const bgColor = window.getComputedStyle(element).backgroundColor;
 
     // If background is transparent, check parent
-    if (bgColor === "rgba(0, 0, 0, 0)" || bgColor === "transparent") {
+    if (bgColor === 'rgba(0, 0, 0, 0)' || bgColor === 'transparent') {
       if (element.parentElement) {
         return isVeryDarkBackground(element.parentElement);
       }
@@ -357,10 +386,7 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     const rgb = bgColor.match(/\d+/g);
     if (rgb && rgb.length >= 3) {
       // Calculate brightness using luminance formula
-      const brightness =
-        0.299 * parseInt(rgb[0]) +
-        0.587 * parseInt(rgb[1]) +
-        0.114 * parseInt(rgb[2]);
+      const brightness = (0.299 * parseInt(rgb[0])) + (0.587 * parseInt(rgb[1])) + (0.114 * parseInt(rgb[2]));
       // Only very dark backgrounds (brightness < 50) get white cursor
       return brightness < 50;
     }
@@ -369,9 +395,9 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
   };
 
   // Update cursor position and color on mouse move
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX - 10 + "px";
-    cursor.style.top = e.clientY - 10 + "px";
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX - 10 + 'px';
+    cursor.style.top = e.clientY - 10 + 'px';
 
     // Get element under cursor
     const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
@@ -379,26 +405,36 @@ const $$ = <T extends Element = Element>(sel: string, root = document) =>
     if (elementUnderCursor) {
       // Check if hovering over very dark background
       if (isVeryDarkBackground(elementUnderCursor)) {
-        cursor.style.borderColor = "#ffffff";
+        cursor.style.borderColor = '#ffffff';
       } else {
-        cursor.style.borderColor = "#1a1a1a";
+        cursor.style.borderColor = '#1a1a1a';
       }
     }
   });
 
   // Handle hover effects for interactive elements
-  $$("a, button").forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      cursor.style.transform = "scale(1.5)";
-      cursor.style.borderColor = "#8bc34a"; // accent color
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(1.5)';
+      // Change to accent color on hover
+      cursor.style.borderColor = '#8bc34a';
     });
 
-    el.addEventListener("mouseleave", () => {
-      cursor.style.transform = "scale(1)";
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
       // Color will be updated by mousemove event
     });
   });
-})();
+};
+
+console.log("CURSOR: About to check window width...");
+// Initialize cursor on desktop/tablet (768px+)
+if (window.innerWidth >= 768) {
+  console.log("CURSOR: Calling createCursor()");
+  createCursor();
+} else {
+  console.log("CURSOR: Window too narrow, not creating cursor");
+}
 
 // Interactive chat form
 (function setupChatForm() {
